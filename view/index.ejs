@@ -20,14 +20,14 @@
                     playSongsHTML = '<div class="top-fade"></div>';
                 songs.forEach((song, i) => {
                   discographySongsHTML += `
-                    <div id="playsong-${i + 1}" class="col-5ths">
+                    <div id="discographysong-${i + 1}" class="col-5ths">
                       <div class="song disc-song" style="background: url(${song.artwork_url})">
                         <p class="song-title">${song.title}</p>
                       </div>
                     </div>
                   `;
                   playSongsHTML += `
-                    <li class="song top">
+                    <li id="playsong-${1}" class="song">
                       <div class="artwork" style="background: url(${song.artwork_url})"></div>
                       <span class="title">${song.title}</span>
                       <span class="time">${msToTime(song.duration)}</span>
@@ -42,6 +42,7 @@
                 $('#artist-name').text(songs[0].user.username);
                 $('#player-title').text(songs[0].title);
                 $('#player-artist').text(songs[0].user.username);
+                $('title').text(songs[0].user.username.toUpperCase());
                 $('#player-artwork').css('background',`url(${songs[0].artwork_url})`);
                 $('body').fadeIn(850);
               }, 5000);
@@ -168,7 +169,7 @@
         }
 
         function clickSongDiscography(id) {
-          $(`div#playsong-${id}`).click(() => {
+          $(`div#discographysong-${id}`).click(() => {
             // TODO pass in ID
             console.log("HELLO", id);
             // playSong(id);

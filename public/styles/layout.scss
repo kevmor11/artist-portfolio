@@ -263,7 +263,7 @@ section#play.songs {
       background: linear-gradient(to bottom, #fc323200 0%,white 100%);
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc323200', endColorstr='white',GradientType=0 );
     }
-    li.song.top {
+    li#playsong-1.song {
       border-top: 2px solid #f9f9f9 !important;
     }
     li.song {
