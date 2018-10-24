@@ -25,7 +25,8 @@ header {
   header h2.title {
     font-size: 60px;
     font-weight: 600;
-    display: inline-block; }
+    display: inline-block;
+    margin-left: 20px !important; }
   header a {
     cursor: pointer;
     color: black;
@@ -98,6 +99,131 @@ section#discography.songs {
       left: 0;
       font-size: 11px;
       text-align: center; }
+
+section#play.songs {
+  padding-bottom: 0; }
+  section#play.songs div.artwork {
+    border-radius: 14px;
+    background-color: black;
+    width: 250px;
+    height: 250px;
+    -webkit-box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56);
+    -moz-box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56);
+    box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56); }
+  section#play.songs div.player {
+    height: 250px;
+    margin-left: 10px;
+    top: 140px;
+    left: 320px; }
+    section#play.songs div.player div.song-title, section#play.songs div.player div.artist {
+      font-size: 30px; }
+    section#play.songs div.player div.song-title {
+      font-weight: 600; }
+    section#play.songs div.player div.controls {
+      margin-top: 20px;
+      margin-left: 20px; }
+      section#play.songs div.player div.controls svg {
+        vertical-align: middle;
+        margin: 0 10px; }
+      section#play.songs div.player div.controls svg.shuffle, section#play.songs div.player div.controls svg.repeat {
+        font-size: 20px;
+        opacity: 0.2; }
+      section#play.songs div.player div.controls svg.previous, section#play.songs div.player div.controls svg.next {
+        font-size: 30px; }
+      section#play.songs div.player div.controls svg.play {
+        font-size: 40px; }
+    section#play.songs div.player progress {
+      display: inline-block;
+      width: 700px;
+      height: 20px;
+      padding: 15px 0 0 0;
+      margin-top: 40px;
+      background: none;
+      border: 0;
+      border-radius: 15px;
+      font-size: 0.8em; }
+    section#play.songs div.player progress::-webkit-progress-bar {
+      height: 3px;
+      width: 700px;
+      margin: 0 auto;
+      background-color: lightgrey;
+      border-radius: 15px;
+      box-shadow: 0px 0px 0px white inset; }
+    section#play.songs div.player progress::-webkit-progress-value {
+      display: inline-block;
+      float: left;
+      height: 3px;
+      margin: 0px -10px 0 0;
+      background: black;
+      border-radius: 15px; }
+    section#play.songs div.player progress:after {
+      margin: 15px 0 0 0;
+      padding: 0;
+      display: inline-block;
+      float: left;
+      content: attr(value) "%";
+      font-size: 16px;
+      opacity: .4; }
+  section#play.songs ul.song-list::-webkit-scrollbar {
+    z-index: 9999; }
+  section#play.songs ul.song-list {
+    position: fixed;
+    left: 0;
+    top: 422px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+    width: 100%;
+    height: 300px;
+    padding-top: 20px; }
+    section#play.songs ul.song-list div.top-bar {
+      position: fixed;
+      width: 100%;
+      height: 10px;
+      top: 422px;
+      background-color: white;
+      /* Old browsers */ }
+    section#play.songs ul.song-list div.top-fade {
+      position: fixed;
+      width: 100%;
+      height: 10px;
+      top: 432px;
+      background: #fc323200;
+      /* Old browsers */
+      background: -moz-linear-gradient(top, white 0%, #fc323200 100%);
+      background: -webkit-linear-gradient(top, white 0%, #fc323200 100%);
+      background: linear-gradient(to bottom, white 0%, #fc323200 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc323200', endColorstr='white',GradientType=0 ); }
+    section#play.songs ul.song-list li.song.top {
+      border-top: 1px solid #dedede !important; }
+    section#play.songs ul.song-list li.song {
+      padding: 13px 100px;
+      border-bottom: 1px solid #dedede !important; }
+      section#play.songs ul.song-list li.song div.artwork {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        -webkit-box-shadow: 0px 0px 25px -2px rgba(0, 0, 0, 0.56);
+        -moz-box-shadow: 0px 0px 25px -2px rgba(0, 0, 0, 0.56);
+        box-shadow: 0px 0px 25px -2px rgba(0, 0, 0, 0.56);
+        background-color: black; }
+      section#play.songs ul.song-list li.song span {
+        vertical-align: top;
+        line-height: 38px;
+        font-size: 14px; }
+      section#play.songs ul.song-list li.song span.title {
+        margin-left: 30px; }
+      section#play.songs ul.song-list li.song span.time {
+        margin-left: 140px; }
+      section#play.songs ul.song-list li.song span.likes {
+        margin-left: 100px; }
+      section#play.songs ul.song-list li.song svg.heart {
+        vertical-align: top;
+        margin-top: 11px;
+        margin-left: 15px;
+        color: black; }
 
 footer div.page-title {
   transform: rotate(-90deg);

@@ -174,8 +174,73 @@
       </div>
     </section>
 
-    <section id="play" class="songs">
-      <div class="artwork"></div>
+    <section id="play" class="songs position-relative">
+      <div class="artwork d-inline-block"></div>
+      <div class="player position-absolute">
+        <div class="song-title">CRUEL (ZOTTI FLIP)</div>
+        <div class="artist">ZOTTI</div>
+        <div class="controls">
+          <i class="fas fa-random shuffle"></i>
+          <i class="fas fa-step-backward previous"></i>
+          <i class="fas fa-play play"></i>
+          <i class="fas fa-step-forward next"></i>
+          <i class="fas fa-redo repeat"></i>
+        </div>
+        <progress id="progress" name="" max="100" value="20"></progress>
+      </div>
+      <ul class="song-list">
+        <div class="top-bar"></div>
+        <div class="top-fade"></div>
+        <li class="song top">
+          <div class="artwork"></div>
+          <span class="title">CRUEL (ZOTTI FLIP)</span>
+          <span class="time">3:27</span>
+          <span class="likes">1,222</span>
+          <i class="fas fa-heart heart"></i>
+        </li>
+        <li class="song">
+          <div class="artwork"></div>
+          <span class="title">CRUEL (ZOTTI FLIP)</span>
+          <span class="time">3:27</span>
+          <span class="likes">1,222</span>
+          <i class="fas fa-heart heart"></i>
+        </li>
+        <li class="song">
+          <div class="artwork"></div>
+          <span class="title">CRUEL (ZOTTI FLIP)</span>
+          <span class="time">3:27</span>
+          <span class="likes">1,222</span>
+          <i class="fas fa-heart heart"></i>
+        </li>
+        <li class="song">
+          <div class="artwork"></div>
+          <span class="title">CRUEL (ZOTTI FLIP)</span>
+          <span class="time">3:27</span>
+          <span class="likes">1,222</span>
+          <i class="fas fa-heart heart"></i>
+        </li>
+        <li class="song">
+          <div class="artwork"></div>
+          <span class="title">CRUEL (ZOTTI FLIP)</span>
+          <span class="time">3:27</span>
+          <span class="likes">1,222</span>
+          <i class="fas fa-heart heart"></i>
+        </li>
+        <li class="song">
+          <div class="artwork"></div>
+          <span class="title">CRUEL (ZOTTI FLIP)</span>
+          <span class="time">3:27</span>
+          <span class="likes">1,222</span>
+          <i class="fas fa-heart heart"></i>
+        </li>
+        <li class="song">
+          <div class="artwork"></div>
+          <span class="title">CRUEL (ZOTTI FLIP)</span>
+          <span class="time">3:27</span>
+          <span class="likes">1,222</span>
+          <i class="fas fa-heart heart"></i>
+        </li>
+      </ul>
     </section>
 
     <script src="https://connect.soundcloud.com/sdk/sdk-3.3.0.js"></script>
@@ -197,13 +262,10 @@
 
         function changeSection(id) {
           $(`#open-${id}`).click(() => {
-            $(`.songs`).hide();
-            $(`.circle`).hide();
-            $(`#page-title`).hide();
-            $(`#page-title`).html(id);
+            $('.songs, .circle, #page-title').hide();
+            $('#page-title').html(id);
             $(`#circle-${id}`).show();
-            $(`#${id}`).fadeIn();
-            $(`#page-title`).fadeIn();
+            $(`#${id}, #page-title`).fadeIn(850);
           });
         }
 
