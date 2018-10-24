@@ -75,7 +75,10 @@ section.songs {
   display: none;
   padding: 40px;
   padding-top: 140px; }
-  section.songs div.disc-song {
+
+section#discography.songs {
+  display: block; }
+  section#discography.songs div.disc-song {
     cursor: pointer;
     width: 100px;
     height: 100px;
@@ -87,16 +90,13 @@ section.songs {
     -webkit-box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56);
     -moz-box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56);
     box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56); }
-    section.songs div.disc-song p.song-title {
+    section#discography.songs div.disc-song p.song-title {
       position: absolute;
       bottom: -40px;
       right: 0;
       left: 0;
       font-size: 11px;
       text-align: center; }
-
-section#discography.songs {
-  display: block; }
 
 footer div.page-title {
   transform: rotate(-90deg);

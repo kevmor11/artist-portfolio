@@ -90,6 +90,10 @@ section.songs {
   display: none;
   padding: 40px;
   padding-top: 140px;
+}
+
+section#discography.songs {
+  display: block;
   div.disc-song {
     cursor: pointer;
     width: 100px;
@@ -113,8 +117,8 @@ section.songs {
   }
 }
 
-section#discography.songs {
-  display: block;
+section#play.songs {
+
 }
 
 footer {
