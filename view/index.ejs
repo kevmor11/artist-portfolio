@@ -10,7 +10,7 @@
     <section id="discography" class="songs">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-5ths">
+          <div id="playsong-1" class="col-5ths">
             <div class="song disc-song">
               <p class="song-title">TITLE</p>
             </div>
@@ -174,7 +174,7 @@
       </div>
     </section>
 
-    <section id="music" class="songs">
+    <section id="play" class="songs">
     </section>
 
     <script>
@@ -184,6 +184,8 @@
         changeSection('music');
         changeSection('discography');
         changeSection('play');
+
+        clickSongDiscography('1');
 
         function changeSection(id) {
           $(`#open-${id}`).click(() => {
@@ -196,8 +198,23 @@
             $(`#page-title`).fadeIn();
           });
         }
+
+        function clickSongDiscography(id) {
+          $(`div#playsong-${id}`).click(() => {
+            // TODO pass in ID
+            console.log("HELLO", id);
+            // playSong('id');
+          });
+        }
+
+        function playSong(id) {
+          // TODO hookup to soundcloud sdk
+
+        }
       });
     </script>
+
     <% include ../partials/_footer %>
+
   </body>
 </html>

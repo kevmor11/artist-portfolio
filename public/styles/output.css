@@ -76,6 +76,7 @@ section.songs {
   padding: 40px;
   padding-top: 140px; }
   section.songs div.disc-song {
+    cursor: pointer;
     width: 100px;
     height: 100px;
     border-radius: 10px;
