@@ -10,7 +10,7 @@
 
       <script>
         $(document).ready(() => {
-          var widget = SC.Widget(document.getElementById('player'));
+          const widget = SC.Widget(document.getElementById('player'));
           widget.bind(SC.Widget.Events.READY, () => {
             widget.getSounds((songs) => {
               setTimeout(() => {
@@ -20,7 +20,7 @@
                     playSongsHTML = '<div class="top-fade"></div>';
                 songs.forEach((song, i) => {
                   discographySongsHTML += `
-                    <div id="discographysong-${i + 1}" class="col-5ths">
+                    <div id="discographysong-${i + 1}" data-id="${i}" class="col-5ths">
                       <div class="song disc-song" style="background: url(${song.artwork_url})">
                         <p class="song-title">${song.title}</p>
                       </div>
