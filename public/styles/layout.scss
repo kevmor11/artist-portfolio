@@ -37,6 +37,10 @@ body {
   display: none;
 }
 
+body::-webkit-scrollbar {
+  z-index: 9999;
+}
+
 header {
   position: fixed;
   background-color: white;
@@ -54,6 +58,7 @@ header {
     font-size: 12px;
     font-weight: 600;
     @include transition;
+
     div.circle {
       top: 20px;
       right: 0;
@@ -106,6 +111,7 @@ section.songs {
 
 section#discography.songs {
   display: block;
+
   div.disc-song {
     cursor: pointer;
     width: 100px;
@@ -117,6 +123,7 @@ section#discography.songs {
     position: relative;
     // TODO learn mixins and use it with
     @include shadow;
+
     p.song-title {
       position: absolute;
       bottom: -40px;
@@ -142,6 +149,7 @@ section#play.songs {
     margin-left: 10px;
     top: 140px;
     left: 320px;
+
     div.song-title, div.artist {
       font-size: 30px;
     }
@@ -194,7 +202,6 @@ section#play.songs {
       margin:0px -10px 0 0;
       background: black;
       border-radius: 15px;
-      // box-shadow:0px 0px 6px #666 inset;
     }
     progress:after {
       margin: 15px 0 0 0;
