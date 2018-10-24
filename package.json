@@ -13,7 +13,8 @@
     "knex": "^0.14.6",
     "mysql": "^2.15.0",
     "objection": "^1.1.10",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "soundcloud": "^3.3.0"
   },
   "devDependencies": {
     "node-sass": "^4.9.0",

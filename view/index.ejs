@@ -177,9 +177,16 @@
     <section id="play" class="songs">
     </section>
 
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.3.0.js"></script>
     <script>
+
       $(document).ready(() => {
         $('body').fadeIn(850);
+
+        SC.initialize({
+          client_id: 'YOUR_CLIENT_ID',
+          redirect_uri: 'http://example.com/callback'
+        });
 
         changeSection('music');
         changeSection('discography');
