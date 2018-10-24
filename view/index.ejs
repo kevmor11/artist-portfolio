@@ -39,10 +39,8 @@
                 playSongsHTML += '<div class="bottom-fade"></div>';
                 $('#disc-songs-container').html(discographySongsHTML);
                 $('#play-songs-container').html(playSongsHTML);
-                $('#artist-name').text(songs[0].user.username);
                 $('#player-title').text(songs[0].title);
-                $('#player-artist').text(songs[0].user.username);
-                $('title').text(songs[0].user.username.toUpperCase());
+                $('#artist-name, #player-artist, title').text(songs[0].user.username);
                 $('#player-artwork').css('background',`url(${songs[0].artwork_url})`);
                 $('body').fadeIn(850);
               }, 5000);
@@ -50,13 +48,9 @@
           });
 
           function msToTime(duration) {
-            var milliseconds = parseInt((duration % 1000) / 100),
-              seconds = parseInt((duration / 1000) % 60),
-              minutes = parseInt((duration / (1000 * 60)) % 60),
-              hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+            var seconds = parseInt((duration / 1000) % 60),
+                minutes = parseInt((duration / (1000 * 60)) % 60);
 
-            hours = (hours < 10) ? "0" + hours : hours;
-            minutes = (minutes < 10) ? "0" + minutes : minutes;
             seconds = (seconds < 10) ? "0" + seconds : seconds;
 
             return minutes + ":" + seconds;
@@ -181,23 +175,6 @@
           // TODO hookup to soundcloud sdk
 
         }
-
-        // var settings = {
-        //   "async": true,
-        //   "crossDomain": true,
-        //   "url": "http://soundcloud.com/oembed",
-        //   "method": "POST",
-        //   "headers": {},
-        //   "data": {
-        //     "format": "json",
-        //     "url": "http://soundcloud.com/verzache",
-        //     "iframe": "false"
-        //   }
-        // }
-
-        // $.ajax(settings).done((response) => {
-        //   console.log(response.html);
-        // });
 
         // TODO fix Portfolio scrollbar so the scrollbar is only within the div and not the body, then hide scrollbar
       });
