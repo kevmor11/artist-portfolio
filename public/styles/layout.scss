@@ -7,6 +7,9 @@
   float: left;
 }
 
+$textArchivo: 'Archivo Black', sans-serif;
+$textRoboto: 'Roboto', sans-serif;
+
 @mixin shadow {
   -webkit-box-shadow: 0px 0px 59px -8px rgba(0,0,0,0.56);
   -moz-box-shadow: 0px 0px 59px -8px rgba(0,0,0,0.56);
@@ -42,11 +45,14 @@ header {
   background-color: white;
   width: 100%;
   z-index: 100;
+  top: 0;
+  height: 104px;
   h2.title {
-    font-size: 60px;
+    font-size: 75px;
     font-weight: 600;
     display: inline-block;
     margin-left: 20px !important;
+    font-family: $textArchivo;
   }
   a {
     cursor: pointer;
@@ -54,6 +60,8 @@ header {
     font-size: 12px;
     font-weight: 600;
     @include transition;
+    font-family: $textRoboto;
+    letter-spacing: .5px;
 
     div.circle {
       top: 20px;
@@ -102,7 +110,7 @@ header {
 section.songs {
   display: none;
   padding: 40px;
-  padding-top: 140px;
+  margin-top: 100px;
 }
 
 section#discography.songs {
@@ -126,6 +134,9 @@ section#discography.songs {
       left: 0;
       font-size: 11px;
       text-align: center;
+      font-family: $textRoboto;
+      letter-spacing: .5px;
+      font-weight: 300;
     }
   }
 }
@@ -142,14 +153,19 @@ section#play.songs {
   div.player {
     height: 250px;
     margin-left: 10px;
-    top: 140px;
-    left: 320px;
+    top: 40px;
+    left: 330px;
 
     div.song-title, div.artist {
-      font-size: 30px;
+      font-family: $textRoboto;
     }
     div.song-title {
-      font-weight: 600;
+      font-weight: 400;
+      font-size: 30px;
+    }
+    div.artist {
+      font-size: 29px;
+      font-weight: 200;
     }
     div.controls {
       margin-top: 20px;
@@ -246,11 +262,11 @@ section#play.songs {
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc323200', endColorstr='white',GradientType=0 );
     }
     li.song.top {
-      border-top: 1px solid #dedede !important;
+      border-top: 2px solid #f9f9f9 !important;
     }
     li.song {
       padding: 13px 100px;
-      border-bottom: 1px solid #dedede !important;
+      border-bottom: 2px solid #f9f9f9 !important;
 
       div.artwork {
         display: inline-block;
@@ -266,6 +282,8 @@ section#play.songs {
         vertical-align: top;
         line-height: 38px;
         font-size: 14px;
+        font-family: $textRoboto;
+        font-weight: 500;
       }
       span.title {
         margin-left: 30px;
@@ -296,6 +314,7 @@ footer {
     left: -20px;
     z-index: 50;
     text-transform: uppercase;
+    font-family: $textRoboto;
   }
   div.bottom-scroll-fade {
     position: fixed;

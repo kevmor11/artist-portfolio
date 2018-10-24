@@ -21,12 +21,15 @@ header {
   position: fixed;
   background-color: white;
   width: 100%;
-  z-index: 100; }
+  z-index: 100;
+  top: 0;
+  height: 104px; }
   header h2.title {
-    font-size: 60px;
+    font-size: 75px;
     font-weight: 600;
     display: inline-block;
-    margin-left: 20px !important; }
+    margin-left: 20px !important;
+    font-family: "Archivo Black", sans-serif; }
   header a {
     cursor: pointer;
     color: black;
@@ -36,7 +39,9 @@ header {
     -moz-transition: all .4s ease;
     -ms-transition: all .4s ease;
     -o-transition: all .4s ease;
-    transition: all .4s ease; }
+    transition: all .4s ease;
+    font-family: "Roboto", sans-serif;
+    letter-spacing: .5px; }
     header a div.circle {
       top: 20px;
       right: 0;
@@ -76,7 +81,7 @@ header {
 section.songs {
   display: none;
   padding: 40px;
-  padding-top: 140px; }
+  margin-top: 100px; }
 
 section#discography.songs {
   display: block; }
@@ -98,7 +103,10 @@ section#discography.songs {
       right: 0;
       left: 0;
       font-size: 11px;
-      text-align: center; }
+      text-align: center;
+      font-family: "Roboto", sans-serif;
+      letter-spacing: .5px;
+      font-weight: 300; }
 
 section#play.songs {
   padding-bottom: 0; }
@@ -113,12 +121,16 @@ section#play.songs {
   section#play.songs div.player {
     height: 250px;
     margin-left: 10px;
-    top: 140px;
-    left: 320px; }
+    top: 40px;
+    left: 330px; }
     section#play.songs div.player div.song-title, section#play.songs div.player div.artist {
-      font-size: 30px; }
+      font-family: "Roboto", sans-serif; }
     section#play.songs div.player div.song-title {
-      font-weight: 600; }
+      font-weight: 400;
+      font-size: 30px; }
+    section#play.songs div.player div.artist {
+      font-size: 29px;
+      font-weight: 200; }
     section#play.songs div.player div.controls {
       margin-top: 20px;
       margin-left: 20px; }
@@ -201,10 +213,10 @@ section#play.songs {
       background: linear-gradient(to bottom, #fc323200 0%, white 100%);
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc323200', endColorstr='white',GradientType=0 ); }
     section#play.songs ul.song-list li.song.top {
-      border-top: 1px solid #dedede !important; }
+      border-top: 2px solid #f9f9f9 !important; }
     section#play.songs ul.song-list li.song {
       padding: 13px 100px;
-      border-bottom: 1px solid #dedede !important; }
+      border-bottom: 2px solid #f9f9f9 !important; }
       section#play.songs ul.song-list li.song div.artwork {
         display: inline-block;
         width: 40px;
@@ -217,7 +229,9 @@ section#play.songs {
       section#play.songs ul.song-list li.song span {
         vertical-align: top;
         line-height: 38px;
-        font-size: 14px; }
+        font-size: 14px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 500; }
       section#play.songs ul.song-list li.song span.title {
         margin-left: 30px; }
       section#play.songs ul.song-list li.song span.time {
@@ -238,7 +252,8 @@ footer div.page-title {
   bottom: 80px;
   left: -20px;
   z-index: 50;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif; }
 
 footer div.bottom-scroll-fade {
   position: fixed;
