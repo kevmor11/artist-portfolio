@@ -179,6 +179,8 @@
 
     <script>
       $(document).ready(() => {
+        $('body').fadeIn(850);
+
         changeSection('music');
         changeSection('discography');
         changeSection('play');
@@ -187,12 +189,11 @@
           $(`#open-${id}`).click(() => {
             $(`.songs`).hide();
             $(`.circle`).hide();
-            $(`#page-title`).fadeOut(() => {
-              $(`#page-title`).html(id);
-              $(`#circle-${id}`).show();
-              $(`#${id}`).fadeIn();
-              $(`#page-title`).fadeIn();
-            });
+            $(`#page-title`).hide();
+            $(`#page-title`).html(id);
+            $(`#circle-${id}`).show();
+            $(`#${id}`).fadeIn();
+            $(`#page-title`).fadeIn();
           });
         }
       });
