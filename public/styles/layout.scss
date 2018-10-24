@@ -129,6 +129,7 @@ section#discography.songs {
     @include shadow;
 
     p.song-title {
+      cursor: initial;
       position: absolute;
       text-transform: uppercase;
       bottom: 15px;
