@@ -27,6 +27,10 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/callback', (req, res) => {
+  res.redirect('/');
+});
+
 // catch 404 and give response
 app.use((req, res) => {
   res.status(404);

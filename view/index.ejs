@@ -243,16 +243,71 @@
       </ul>
     </section>
 
-    <script src="https://connect.soundcloud.com/sdk/sdk-3.3.0.js"></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>
+      const token = 'lzlh0dRTEY67JSeCSZKAD5_cyt836vFvkXqtc3cyaaQ1fdF2cal8F7lcqD14kwOJspCzblXLLd1Uj7LpL9CPDZg3k1lEEXtqPIF9yBZJFEXyNM74gpOlnDpMJm9WxdA';
+      const authEndpoint = 'https://accounts.spotify.com/authorize';
+
+      // Replace with your app's client ID, redirect URI and desired scopes
+      const clientId = '3c9e42b86d8c42fda86e26959ec827fe';
+      const redirectUri = 'https://spotify-web-playback.glitch.me';
+      const scopes = [
+        'streaming'
+      ];
+
+      // If there is no token, redirect to Spotify authorization
+      if (!token) {
+        window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
+      }
+
+      // Set up the Web Playback SDK
+
+      window.onSpotifyPlayerAPIReady = () => {
+        const player = new Spotify.Player({
+          name: 'Web Playback SDK Template',
+          getOAuthToken: cb => { cb(token); }
+        });
+
+        // Error handling
+        player.on('initialization_error', e => console.error(e));
+        player.on('authentication_error', e => console.error(e));
+        player.on('account_error', e => console.error(e));
+        player.on('playback_error', e => console.error(e));
+
+        // Playback status updates
+        player.on('player_state_changed', state => {
+          console.log(state)
+          $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
+          $('#current-track-name').text(state.track_window.current_track.name);
+        });
+
+        // Ready
+        player.on('ready', data => {
+          console.log('Ready with Device ID', data.device_id);
+
+          // Play a track using our new device ID
+          play(data.device_id);
+        });
+
+        // Connect to the player!
+        player.connect();
+      }
+
+      // Play a specified track on the Web Playback SDK's device ID
+      function play(device_id) {
+        $.ajax({
+        url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
+        type: "PUT",
+        data: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
+        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token );},
+        success: function(data) {
+          console.log(data)
+        }
+        });
+      }
 
       $(document).ready(() => {
         $('body').fadeIn(850);
-
-        SC.initialize({
-          client_id: 'YOUR_CLIENT_ID',
-          redirect_uri: 'http://example.com/callback'
-        });
 
         changeSection('music');
         changeSection('discography');
@@ -282,6 +337,23 @@
           // TODO hookup to soundcloud sdk
 
         }
+
+        // var settings = {
+        //   "async": true,
+        //   "crossDomain": true,
+        //   "url": "http://soundcloud.com/oembed",
+        //   "method": "POST",
+        //   "headers": {},
+        //   "data": {
+        //     "format": "json",
+        //     "url": "http://soundcloud.com/verzache",
+        //     "iframe": "false"
+        //   }
+        // }
+
+        // $.ajax(settings).done((response) => {
+        //   console.log(response.html);
+        // });
 
         // TODO fix Portfolio scrollbar so the scrollbar is only within the div and not the body, then hide scrollbar
       });
