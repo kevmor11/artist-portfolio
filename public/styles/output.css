@@ -25,6 +25,7 @@ header {
   top: 0;
   height: 104px; }
   header h2.title {
+    text-transform: uppercase;
     font-size: 75px;
     font-weight: 600;
     display: inline-block;
@@ -93,13 +94,13 @@ section#discography.songs {
     background-color: black;
     margin: 0 auto;
     margin-bottom: 53px;
-    position: relative;
     -webkit-box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56);
     -moz-box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56);
     box-shadow: 0px 0px 59px -8px rgba(0, 0, 0, 0.56); }
     section#discography.songs div.disc-song p.song-title {
       position: absolute;
-      bottom: -40px;
+      text-transform: uppercase;
+      bottom: 15px;
       right: 0;
       left: 0;
       font-size: 11px;
@@ -234,15 +235,18 @@ section#play.songs {
         font-family: "Roboto", sans-serif;
         font-weight: 500; }
       section#play.songs ul.song-list li.song span.title {
-        margin-left: 30px; }
-      section#play.songs ul.song-list li.song span.time {
-        margin-left: 140px; }
+        min-width: 280px;
+        margin-left: 30px;
+        display: inline-block; }
       section#play.songs ul.song-list li.song span.likes {
-        margin-left: 100px; }
+        margin-left: 100px;
+        min-width: 40px;
+        display: inline-block;
+        text-align: right; }
       section#play.songs ul.song-list li.song svg.heart {
         vertical-align: top;
         margin-top: 11px;
-        margin-left: 15px;
+        margin-left: 25px;
         color: black; }
 
 footer div.page-title {

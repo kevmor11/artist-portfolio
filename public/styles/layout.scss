@@ -48,6 +48,7 @@ header {
   top: 0;
   height: 104px;
   h2.title {
+    text-transform: uppercase;
     font-size: 75px;
     font-weight: 600;
     display: inline-block;
@@ -124,12 +125,13 @@ section#discography.songs {
     background-color: black;
     margin: 0 auto;
     margin-bottom: 53px;
-    position: relative;
+    // position: relative;
     @include shadow;
 
     p.song-title {
       position: absolute;
-      bottom: -40px;
+      text-transform: uppercase;
+      bottom: 15px;
       right: 0;
       left: 0;
       font-size: 11px;
@@ -287,18 +289,20 @@ section#play.songs {
         font-weight: 500;
       }
       span.title {
+        min-width: 280px;
         margin-left: 30px;
-      }
-      span.time {
-        margin-left: 140px;
+        display: inline-block;
       }
       span.likes {
         margin-left: 100px;
+        min-width: 40px;
+        display: inline-block;
+        text-align: right;
       }
       svg.heart {
         vertical-align: top;
         margin-top: 11px;
-        margin-left: 15px;
+        margin-left: 25px;
         color: black;
       }
     }

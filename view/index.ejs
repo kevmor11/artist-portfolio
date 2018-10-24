@@ -5,180 +5,79 @@
     <% include ../partials/_header %>
 
     <section id="music" class="songs">
+      <script src="http://w.soundcloud.com/player/api.js"></script>
+      <iframe id="player" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/71811764&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+
+      <script>
+        $(document).ready(() => {
+          var widget = SC.Widget(document.getElementById('player'));
+          widget.bind(SC.Widget.Events.READY, () => {
+            widget.getSounds((songs) => {
+              setTimeout(() => {
+                console.log(widget);
+                console.log(songs);
+                let discographySongsHTML = '',
+                    playSongsHTML = '<div class="top-fade"></div>';
+                songs.forEach((song, i) => {
+                  discographySongsHTML += `
+                    <div id="playsong-${i + 1}" class="col-5ths">
+                      <div class="song disc-song" style="background: url(${song.artwork_url})">
+                        <p class="song-title">${song.title}</p>
+                      </div>
+                    </div>
+                  `;
+                  playSongsHTML += `
+                    <li class="song top">
+                      <div class="artwork" style="background: url(${song.artwork_url})"></div>
+                      <span class="title">${song.title}</span>
+                      <span class="time">${msToTime(song.duration)}</span>
+                      <span class="likes">${song.likes_count}</span>
+                      <i class="fas fa-heart heart"></i>
+                    </li>
+                  `;
+                });
+                playSongsHTML += '<div class="bottom-fade"></div>';
+                $('#disc-songs-container').html(discographySongsHTML);
+                $('#play-songs-container').html(playSongsHTML);
+                $('#artist-name').text(songs[0].user.username);
+                $('#player-title').text(songs[0].title);
+                $('#player-artist').text(songs[0].user.username);
+                $('#player-artwork').css('background',`url(${songs[0].artwork_url})`);
+                $('body').fadeIn(850);
+              }, 5000);
+            })
+          });
+
+          function msToTime(duration) {
+            var milliseconds = parseInt((duration % 1000) / 100),
+              seconds = parseInt((duration / 1000) % 60),
+              minutes = parseInt((duration / (1000 * 60)) % 60),
+              hours = parseInt((duration / (1000 * 60 * 60)) % 24);
+
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+            seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+            return minutes + ":" + seconds;
+          }
+        });
+      </script>
+
     </section>
 
     <section id="discography" class="songs">
       <div class="container-fluid">
-        <div class="row">
-          <div id="playsong-1" class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
-          <div class="col-5ths">
-            <div class="song disc-song">
-              <p class="song-title">TITLE</p>
-            </div>
-          </div>
+        <div id="disc-songs-container" class="row">
+
         </div>
       </div>
     </section>
 
     <section id="play" class="songs position-relative">
-      <div class="artwork d-inline-block"></div>
+      <div id="player-artwork" class="artwork d-inline-block"></div>
       <div class="player position-absolute">
-        <div class="song-title">CRUEL (ZOTTI FLIP)</div>
-        <div class="artist">ZOTTI</div>
+        <div id="player-title" class="song-title">CRUEL (ZOTTI FLIP)</div>
+        <div id="player-artist" class="artist">ZOTTI</div>
         <div class="controls">
           <i class="fas fa-random shuffle"></i>
           <i class="fas fa-step-backward previous"></i>
@@ -188,126 +87,70 @@
         </div>
         <progress id="progress" name="" max="100" value="20"></progress>
       </div>
-      <ul class="song-list">
-        <div class="top-fade"></div>
-        <li class="song top">
-          <div class="artwork"></div>
-          <span class="title">CRUEL (ZOTTI FLIP)</span>
-          <span class="time">3:27</span>
-          <span class="likes">1,222</span>
-          <i class="fas fa-heart heart"></i>
-        </li>
-        <li class="song">
-          <div class="artwork"></div>
-          <span class="title">CRUEL (ZOTTI FLIP)</span>
-          <span class="time">3:27</span>
-          <span class="likes">1,222</span>
-          <i class="fas fa-heart heart"></i>
-        </li>
-        <li class="song">
-          <div class="artwork"></div>
-          <span class="title">CRUEL (ZOTTI FLIP)</span>
-          <span class="time">3:27</span>
-          <span class="likes">1,222</span>
-          <i class="fas fa-heart heart"></i>
-        </li>
-        <li class="song">
-          <div class="artwork"></div>
-          <span class="title">CRUEL (ZOTTI FLIP)</span>
-          <span class="time">3:27</span>
-          <span class="likes">1,222</span>
-          <i class="fas fa-heart heart"></i>
-        </li>
-        <li class="song">
-          <div class="artwork"></div>
-          <span class="title">CRUEL (ZOTTI FLIP)</span>
-          <span class="time">3:27</span>
-          <span class="likes">1,222</span>
-          <i class="fas fa-heart heart"></i>
-        </li>
-        <li class="song">
-          <div class="artwork"></div>
-          <span class="title">CRUEL (ZOTTI FLIP)</span>
-          <span class="time">3:27</span>
-          <span class="likes">1,222</span>
-          <i class="fas fa-heart heart"></i>
-        </li>
-        <li class="song">
-          <div class="artwork"></div>
-          <span class="title">CRUEL (ZOTTI FLIP)</span>
-          <span class="time">3:27</span>
-          <span class="likes">1,222</span>
-          <i class="fas fa-heart heart"></i>
-        </li>
-        <div class="bottom-fade"></div>
+      <ul id="play-songs-container" class="song-list">
       </ul>
     </section>
 
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>
-      const token = 'lzlh0dRTEY67JSeCSZKAD5_cyt836vFvkXqtc3cyaaQ1fdF2cal8F7lcqD14kwOJspCzblXLLd1Uj7LpL9CPDZg3k1lEEXtqPIF9yBZJFEXyNM74gpOlnDpMJm9WxdA';
-      const authEndpoint = 'https://accounts.spotify.com/authorize';
+      // const token = 'BQAft-YPkokCxIGzyoWHJv3dWui4gCaQwfD6wFLVt9wltGphaYsuFm1OrVYdEM__EDldglg3o7tCq2XNKZQBBjdaaE03KDYu_e1D1EmMBraogmzVGkyw_HO0iUEZzofpWl3UELYWPUyApTg46kp5Mvcj2Y_VW1No6GLOyQ';
+      // const authEndpoint = 'https://accounts.spotify.com/authorize';
 
-      // Replace with your app's client ID, redirect URI and desired scopes
-      const clientId = '3c9e42b86d8c42fda86e26959ec827fe';
-      const redirectUri = 'https://spotify-web-playback.glitch.me';
-      const scopes = [
-        'streaming'
-      ];
+      // // Replace with your app's client ID, redirect URI and desired scopes
+      // const clientId = '3c9e42b86d8c42fda86e26959ec827fe';
+      // const redirectUri = 'https://musician-portfolio.herokuapp.com/callback';
+      // const scopes = [
+      //   'streaming',
+      //   'user-modify-playback-state'
+      // ];
 
-      // If there is no token, redirect to Spotify authorization
-      if (!token) {
-        window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join('%20')}&response_type=token&show_dialog=true`;
-      }
+      // // Set up the Web Playback SDK
 
-      // Set up the Web Playback SDK
+      // window.onSpotifyPlayerAPIReady = () => {
+      //   const player = new Spotify.Player({
+      //     name: 'Web Playback SDK Template',
+      //     getOAuthToken: cb => { cb(token); }
+      //   });
 
-      window.onSpotifyPlayerAPIReady = () => {
-        const player = new Spotify.Player({
-          name: 'Web Playback SDK Template',
-          getOAuthToken: cb => { cb(token); }
-        });
+      //   // Error handling
+      //   player.on('initialization_error', e => console.error(e));
+      //   player.on('authentication_error', e => console.error(e));
+      //   player.on('account_error', e => console.error(e));
+      //   player.on('playback_error', e => console.error(e));
 
-        // Error handling
-        player.on('initialization_error', e => console.error(e));
-        player.on('authentication_error', e => console.error(e));
-        player.on('account_error', e => console.error(e));
-        player.on('playback_error', e => console.error(e));
+      //   // Playback status updates
+      //   player.on('player_state_changed', state => {
+      //     console.log(state)
+      //     $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
+      //     $('#current-track-name').text(state.track_window.current_track.name);
+      //   });
 
-        // Playback status updates
-        player.on('player_state_changed', state => {
-          console.log(state)
-          $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
-          $('#current-track-name').text(state.track_window.current_track.name);
-        });
+      //   // Ready
+      //   player.on('ready', data => {
+      //     console.log('Ready with Device ID', data.device_id);
 
-        // Ready
-        player.on('ready', data => {
-          console.log('Ready with Device ID', data.device_id);
+      //     // Play a track using our new device ID
+      //     play(data.device_id);
+      //   });
 
-          // Play a track using our new device ID
-          play(data.device_id);
-        });
+      //   // Connect to the player!
+      //   player.connect();
+      // }
 
-        // Connect to the player!
-        player.connect();
-      }
-
-      // Play a specified track on the Web Playback SDK's device ID
-      function play(device_id) {
-        $.ajax({
-        url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
-        type: "PUT",
-        data: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
-        beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token );},
-        success: function(data) {
-          console.log(data)
-        }
-        });
-      }
+      // // Play a specified track on the Web Playback SDK's device ID
+      // function play(device_id) {
+      //   $.ajax({
+      //   url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
+      //   type: "PUT",
+      //   data: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
+      //   beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token );},
+      //   success: function(data) {
+      //     console.log(data)
+      //   }
+      //   });
+      // }
 
       $(document).ready(() => {
-        $('body').fadeIn(850);
+        //$('body').fadeIn(850);
 
         changeSection('music');
         changeSection('discography');
