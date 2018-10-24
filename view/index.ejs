@@ -203,11 +203,12 @@
           $(`div#playsong-${id}`).click(() => {
             // TODO pass in ID
             console.log("HELLO", id);
-            // playSong('id');
+            // playSong(id);
           });
         }
 
         function playSong(id) {
+          changeSection('play');
           // TODO hookup to soundcloud sdk
 
         }
