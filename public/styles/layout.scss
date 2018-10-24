@@ -1,9 +1,35 @@
+.col-5ths {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 50%;
+  float: left;
+}
+
+@media (min-width: 768px) {
+  .col-5ths {
+    width: 25%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-5ths {
+    width: 20%;
+  }
+}
+
 header {
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  z-index: 100;
   h2.title {
     font-size: 60px;
     font-weight: 600;
   }
   a {
+    cursor: pointer;
     color: black;
     font-size: 12px;
     font-weight: 600;
@@ -12,6 +38,21 @@ header {
     -ms-transition: all .4s ease;
     -o-transition: all .4s ease;
     transition: all .4s ease;
+    div.circle {
+      top: 20px;
+      right: 0;
+      left: 0;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: black;
+      height: 6px;
+      width: 6px;
+      border-radius: 5px;
+      display: none;
+    }
+    div.circle.selected {
+      display: block;
+    }
   }
   a.link {
     margin-top: 50px !important;
@@ -27,74 +68,82 @@ header {
     text-decoration: none;
     color: rgb(90, 90, 90);
   }
-}
-
-.input-group-btn {
-  position: relative;
-  font-size: 0;
-  white-space: nowrap;
-  vertical-align: middle;
-  span {
-    border-bottom-right-radius: 0;
-    border-top-right-radius: 0;
+  div.top-scroll-fade {
+    position: fixed;
+    width: 100%;
+    height: 10px;
+    top: 104px;
+    background: #fc323200; /* Old browsers */
+    background: -moz-linear-gradient(top, white 0%, #fc323200 100%);
+    background: -webkit-linear-gradient(top, white 0%,#fc323200 100%);
+    background: linear-gradient(to bottom, white 0%,#fc323200 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc323200', endColorstr='white',GradientType=0 );
   }
 }
 
-input.field {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  flex: none !important;
-  width: 300px !important;
-}
-
-select.product {
-  width: 392px !important;
-}
-
-button.submit-prod {
-  margin-left: 150px;
-}
-
-a.add-product {
-  right: 220px;
-  top: 110px;
-  z-index: 2;
-}
-
-label.edit-product {
-  min-width: 120px;
-  text-align: right;
-}
-
-input.text-input {
-  border-radius: 3px;
-  width: 300px;
-  border: .5px solid lightgrey;
-  margin-left: 10px;
-  padding: 5px;
-}
-
-section.product-table {
-  padding-top: 30px;
-
-  table#products {
+section.songs {
+  display: none;
+  padding: 40px;
+  padding-top: 140px;
+  div.disc-song {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: black;
     margin: 0 auto;
-    width: 80%;
+    margin-bottom: 53px;
+    position: relative;
+    -webkit-box-shadow: 0px 0px 59px -8px rgba(0,0,0,0.56);
+    -moz-box-shadow: 0px 0px 59px -8px rgba(0,0,0,0.56);
+    box-shadow: 0px 0px 59px -8px rgba(0,0,0,0.56);
+    p.song-title {
+      position: absolute;
+      bottom: -40px;
+      right: 0;
+      left: 0;
+      font-size: 11px;
+      text-align: center;
+    }
   }
-
 }
 
-div.modal-prompt {
-  overflow: visible;
-  min-height: 200px;
-  padding-top: 50px;
+section#discography.songs {
+  display: block;
 }
 
 footer {
+  div.page-title {
+    transform: rotate(-90deg);
+    font-size: 18px;
+    font-weight: 600;
+    width: 135px;
+    bottom: 80px;
+    left: -20px;
+    z-index: 50;
+    text-transform: uppercase;
+  }
+  div.bottom-scroll-fade {
+    position: fixed;
+    width: 100%;
+    height: 10px;
+    bottom: 60px;
+    background: #fc323200; /* Old browsers */
+    background: -moz-linear-gradient(top, #fc323200 0%, white 100%);
+    background: -webkit-linear-gradient(top, #fc323200 0%,white 100%);
+    background: linear-gradient(to bottom, #fc323200 0%,white 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc323200', endColorstr='white',GradientType=0 );
+  }
+  div.bottom-scroll-solid {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    background-color: white;
+  }
   div.footer {
     position: fixed;
-    bottom: 20px;
-    right: 30px;
+    bottom: 5px;
+    right: 20px;
     a {
       color: black;
       text-decoration: none;
