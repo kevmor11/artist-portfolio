@@ -124,7 +124,8 @@ section#play.songs {
       margin-left: 20px; }
       section#play.songs div.player div.controls svg {
         vertical-align: middle;
-        margin: 0 10px; }
+        margin: 0 10px;
+        cursor: pointer; }
       section#play.songs div.player div.controls svg.shuffle, section#play.songs div.player div.controls svg.repeat {
         font-size: 20px;
         opacity: 0.2; }
