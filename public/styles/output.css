@@ -17,9 +17,6 @@
 body {
   display: none; }
 
-body::-webkit-scrollbar {
-  z-index: 9999; }
-
 header {
   position: fixed;
   background-color: white;
