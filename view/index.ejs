@@ -187,9 +187,9 @@
           $(`#open-${id}`).click(() => {
             $(`.songs`).hide();
             $(`.circle`).hide();
+            $(`#circle-${id}`).show();
             $(`#page-title`).fadeOut(() => {
               $(`#page-title`).html(id);
-              $(`#circle-${id}`).show();
               $(`#${id}`).fadeIn();
               $(`#page-title`).fadeIn();
             });
