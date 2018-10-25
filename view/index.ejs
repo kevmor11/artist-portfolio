@@ -64,13 +64,13 @@
             songs.forEach((song, i) => {
               discographySongsHTML += `
                 <div data-id="${i}" class="col-5ths">
-                  <div id="discographysong-${i + 1}" class="song disc-song" style="background: url(${song.artwork_url})">
+                  <div id="discographysong-${i}" class="song disc-song" style="background: url(${song.artwork_url})">
                     <p class="song-title">${song.title}</p>
                   </div>
                 </div>
               `;
               playSongsHTML += `
-                <li id="playsong-${i + 1}" class="song">
+                <li id="playsong-${i}" class="song">
                   <div class="artwork" style="background: url(${song.artwork_url})"></div>
                   <span class="title">${song.title}</span>
                   <span class="time">${msToTime(song.duration)}</span>
@@ -78,8 +78,8 @@
                   <i class="fas fa-heart heart"></i>
                 </li>
               `;
-              clickSong(i + 1);
-              clickSong(i + 1);
+              clickSong(i);
+              clickSong(i);
             });
 
             playSongsHTML += '<div class="bottom-fade"></div>';
@@ -94,7 +94,7 @@
             $('body').fadeIn(850);
 
             allSongs.forEach((song, i) => {
-              clickSong(i + 1);
+              clickSong(i);
             })
           })
         });
@@ -149,19 +149,23 @@
 
         function clickSong(id) {
           $(`div#discographysong-${id}`).click(() => {
-            playSong();
+            playSong(id);
             changeSection('play');
           });
           $(`li#playsong-${id}`).click(() => {
-            playSong();
+            playSong(id);
           });
         }
 
-        function playSong() {
+        function playSong(id) {
           // TODO hookup to soundcloud sdk
-          widget.play();
+          widget.skip(id);
           setTime();
-          $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+          widget.getCurrentSound((song) => {
+            $('#player-title').text(song.title);
+            $('#duration').text(msToTime(song.duration));
+            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+          })
         }
 
         function setTime() {
