@@ -99,9 +99,9 @@
         setClickForChangeSection('play');
 
         $('#play-pause').click(() => {
+          widget.toggle();
           // TODO pause setTime from firing when the songs pauses
             // may need to switch to setInterval instead and then clearInterval to pause it
-          widget.toggle();
           setTime();
           if($('#play-pause-icon').hasClass('fa-pause')) {
             $('#play-pause-icon').removeClass('fa-pause').addClass('fa-play');
@@ -143,6 +143,7 @@
         function clickSong(id) {
           $(`div#discographysong-${id}`).click(() => {
             playSong();
+            changeSection('play');
           });
           $(`li#playsong-${id}`).click(() => {
             playSong();
@@ -150,7 +151,6 @@
         }
 
         function playSong() {
-          changeSection('play');
           // TODO hookup to soundcloud sdk
           widget.play();
           setTime();
@@ -158,7 +158,7 @@
         }
 
         function setTime() {
-          console.log("HELLO");
+          //console.log("HELLO");
           widget.getPosition((time) => {
             $('progress').attr('value',time);
             time = msToTime(time);

@@ -231,15 +231,6 @@ section#play.songs {
       background: black;
       border-radius: 15px;
     }
-    // progress:after {
-    //   margin: 15px 0 0 0;
-    //   padding:0;
-    //   display:inline-block;
-    //   float:left;
-    //   content: attr(value);
-    //   font-size: 16px;
-    //   opacity: .4;
-    // }
   }
   ul.song-list::-webkit-scrollbar {
     z-index: 9999;
