@@ -71,15 +71,16 @@
                 </div>
               `;
               playSongsHTML += `
-                <li id="playsong-${i}" class="song">
-                  <div class="artwork" style="background: url(${song.artwork_url})"></div>
-                  <span class="title">${song.title}</span>
+                <li class="song">
+                  <div class="artwork playsong-${i}" style="background: url(${song.artwork_url})"></div>
+                  <span class="title-container">
+                    <span class="title playsong-${i}">${song.title}</span>
+                  </span>
                   <span class="time">${msToTime(song.duration)}</span>
                   <span class="likes">${song.likes_count}</span>
                   <i class="fas fa-heart heart"></i>
                 </li>
               `;
-              clickSong(i);
               clickSong(i);
             });
 
@@ -104,34 +105,33 @@
         setClickForChangeSection('discography');
         setClickForChangeSection('play');
 
-        $('#play-pause').click(() => {
-          widget.toggle();
-          // TODO pause setTime from firing when the songs pauses
-            // may need to switch to setInterval instead and then clearInterval to pause it
-          setTime();
-          if($('#play-pause-icon').hasClass('fa-pause')) {
-            $('#play-pause-icon').removeClass('fa-pause').addClass('fa-play');
-          } else {
-            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+        // TODO implement the search function
+
+        // TODO keyboard shortcuts should only have effect if we are on the PLAY screen
+          // unless I put a player at the bottom of the screen
+        $('body').keyup((e) => {
+          if(e.keyCode == 32) {
+            // user has pressed spacebar
+            togglePlayPause();
+          } else if(e.keyCode == 37) {
+            // user has pressed left arrow
+            prevSong();
+          } else if(e.keyCode == 39) {
+            // user has pressed right arrow
+            nextSong();
           }
         });
 
+        $('#play-pause').click(() => {
+          togglePlayPause();
+        });
+
         $('#previous').click(() => {
-          widget.prev().seekTo(0);
-          widget.getCurrentSound((song) => {
-            $('#player-title').text(song.title);
-            $('#duration').text(msToTime(song.duration));
-            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
-          })
+          prevSong();
         });
 
         $('#next').click(() => {
-          widget.next().seekTo(0);
-          widget.getCurrentSound((song) => {
-            $('#player-title').text(song.title);
-            $('#duration').text(msToTime(song.duration));
-            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
-          })
+          nextSong();
         });
 
 
@@ -153,9 +153,39 @@
             playSong(id);
             changeSection('play');
           });
-          $(`li#playsong-${id}`).click(() => {
+          $(`.playsong-${id}`).click(() => {
             playSong(id);
           });
+        }
+
+        function togglePlayPause() {
+          widget.toggle();
+          // TODO pause setTime from firing when the songs pauses
+            // may need to switch to setInterval instead and then clearInterval to pause it
+          setTime();
+          if($('#play-pause-icon').hasClass('fa-pause')) {
+            $('#play-pause-icon').removeClass('fa-pause').addClass('fa-play');
+          } else {
+            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+          }
+        }
+
+        function prevSong() {
+          widget.prev().seekTo(0);
+          widget.getCurrentSound((song) => {
+            $('#player-title').text(song.title);
+            $('#duration').text(msToTime(song.duration));
+            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+          })
+        }
+
+        function nextSong() {
+          widget.next().seekTo(0);
+          widget.getCurrentSound((song) => {
+            $('#player-title').text(song.title);
+            $('#duration').text(msToTime(song.duration));
+            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+          })
         }
 
         function playSong(id) {

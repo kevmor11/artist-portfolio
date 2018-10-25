@@ -272,6 +272,7 @@ section#play.songs {
       border-bottom: 2px solid #f9f9f9 !important;
 
       div.artwork {
+        cursor: pointer;
         display: inline-block;
         width: 40px;
         height: 40px;
@@ -288,11 +289,15 @@ section#play.songs {
         font-family: $textRoboto;
         font-weight: 500;
       }
-      span.title {
+      span.title-container {
         min-width: 280px;
-        margin-left: 30px;
-        text-transform: uppercase;
         display: inline-block;
+        margin-left: 30px;
+
+        span.title {
+          cursor: pointer;
+          text-transform: uppercase;
+        }
       }
       span.likes {
         margin-left: 100px;
