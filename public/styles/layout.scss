@@ -191,6 +191,14 @@ section#play.songs {
         font-size: 40px;
       }
     }
+    span#duration {
+      right: 0;
+      bottom: 5px;
+    }
+    span#current-duration {
+      left: 0;
+      bottom: 5px;
+    }
     progress {
       display:inline-block;
       width:700px;
@@ -211,6 +219,11 @@ section#play.songs {
       box-shadow:0px 0px 0px white inset;
     }
     progress::-webkit-progress-value {
+      -webkit-transition: all 1s linear;
+      -moz-transition: all 1s linear;
+      -ms-transition: all 1s linear;
+      -o-transition: all 1s linear;
+      transition: all 1s linear;
       display:inline-block;
       float:left;
       height:3px;
@@ -218,15 +231,15 @@ section#play.songs {
       background: black;
       border-radius: 15px;
     }
-    progress:after {
-      margin: 15px 0 0 0;
-      padding:0;
-      display:inline-block;
-      float:left;
-      content: attr(value) '%';
-      font-size: 16px;
-      opacity: .4;
-    }
+    // progress:after {
+    //   margin: 15px 0 0 0;
+    //   padding:0;
+    //   display:inline-block;
+    //   float:left;
+    //   content: attr(value);
+    //   font-size: 16px;
+    //   opacity: .4;
+    // }
   }
   ul.song-list::-webkit-scrollbar {
     z-index: 9999;

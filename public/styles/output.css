@@ -148,6 +148,12 @@ section#play.songs {
         font-size: 30px; }
       section#play.songs div.player div.controls svg.play {
         font-size: 40px; }
+    section#play.songs div.player span#duration {
+      right: 0;
+      bottom: 5px; }
+    section#play.songs div.player span#current-duration {
+      left: 0;
+      bottom: 5px; }
     section#play.songs div.player progress {
       display: inline-block;
       width: 700px;
@@ -166,20 +172,17 @@ section#play.songs {
       border-radius: 15px;
       box-shadow: 0px 0px 0px white inset; }
     section#play.songs div.player progress::-webkit-progress-value {
+      -webkit-transition: all 1s linear;
+      -moz-transition: all 1s linear;
+      -ms-transition: all 1s linear;
+      -o-transition: all 1s linear;
+      transition: all 1s linear;
       display: inline-block;
       float: left;
       height: 3px;
       margin: 0px -10px 0 0;
       background: black;
       border-radius: 15px; }
-    section#play.songs div.player progress:after {
-      margin: 15px 0 0 0;
-      padding: 0;
-      display: inline-block;
-      float: left;
-      content: attr(value) "%";
-      font-size: 16px;
-      opacity: .4; }
   section#play.songs ul.song-list::-webkit-scrollbar {
     z-index: 9999; }
   section#play.songs ul.song-list {

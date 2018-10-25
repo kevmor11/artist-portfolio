@@ -12,9 +12,9 @@
     "express": "^4.16.3",
     "knex": "^0.14.6",
     "mysql": "^2.15.0",
+    "npm": "^6.4.1",
     "objection": "^1.1.10",
-    "path": "^0.12.7",
-    "soundcloud": "^3.3.0"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "node-sass": "^4.9.0",

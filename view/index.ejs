@@ -7,51 +7,6 @@
     <section id="music" class="songs">
       <script src="https://w.soundcloud.com/player/api.js"></script>
       <iframe id="player" width="100%" height="500" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/71811764&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-
-      <script>
-        $(document).ready(() => {
-          const widget = SC.Widget(document.getElementById('player'));
-          widget.bind(SC.Widget.Events.READY, () => {
-            widget.getSounds((songs) => {
-              console.log(songs);
-              let discographySongsHTML = '',
-                  playSongsHTML = '<div class="top-fade"></div>';
-              songs.forEach((song, i) => {
-                discographySongsHTML += `
-                  <div id="discographysong-${i + 1}" data-id="${i}" class="col-5ths">
-                    <div class="song disc-song" style="background: url(${song.artwork_url})">
-                      <p class="song-title">${song.title}</p>
-                    </div>
-                  </div>
-                `;
-                playSongsHTML += `
-                  <li id="playsong-${i + 1}" class="song">
-                    <div class="artwork" style="background: url(${song.artwork_url})"></div>
-                    <span class="title">${song.title}</span>
-                    <span class="time">${msToTime(song.duration)}</span>
-                    <span class="likes">${song.likes_count}</span>
-                    <i class="fas fa-heart heart"></i>
-                  </li>
-                `;
-              });
-              playSongsHTML += '<div class="bottom-fade"></div>';
-              $('#disc-songs-container').html(discographySongsHTML);
-              $('#play-songs-container').html(playSongsHTML);
-              $('#player-title').text(songs[0].title);
-              $('#artist-name, #player-artist, title').text(songs[0].user.username);
-              $('#player-artwork').css('background',`url(${songs[0].artwork_url})`);
-              $('body').fadeIn(850);
-            })
-          });
-
-          function msToTime(duration) {
-            var seconds = parseInt((duration / 1000) % 60),
-                minutes = parseInt((duration / (1000 * 60)) % 60);
-            seconds = (seconds < 10) ? "0" + seconds : seconds;
-            return minutes + ":" + seconds;
-          }
-        });
-      </script>
     </section>
 
     <section id="discography" class="songs">
@@ -66,108 +21,141 @@
         <div id="player-title" class="song-title"></div>
         <div id="player-artist" class="artist"></div>
         <div class="controls">
-          <i class="fas fa-random shuffle"></i>
-          <i class="fas fa-step-backward previous"></i>
-          <i class="fas fa-play play"></i>
-          <i class="fas fa-step-forward next"></i>
-          <i class="fas fa-redo repeat"></i>
+          <span id="shuffle">
+            <i class="fas fa-random shuffle"></i>
+          </span>
+          <span id="previous">
+            <i class="fas fa-step-backward previous"></i>
+          </span>
+          <span id="play-pause">
+            <i id="play-pause-icon" class="fas fa-play play"></i>
+          </span>
+          <span id="next">
+            <i class="fas fa-step-forward next"></i>
+          </span>
+          <span id="repeat">
+            <i class="fas fa-redo repeat"></i>
+          </span>
         </div>
-        <progress id="progress" name="" max="100" value="20"></progress>
+        <progress id="progress" name="" max="100" value="0"></progress>
+        <span id="current-duration" class="position-absolute">0:00</span>
+        <span id="duration" class="position-absolute"></span>
       </div>
       <ul id="play-songs-container" class="song-list">
       </ul>
     </section>
 
     <script>
-      // const token = 'BQAft-YPkokCxIGzyoWHJv3dWui4gCaQwfD6wFLVt9wltGphaYsuFm1OrVYdEM__EDldglg3o7tCq2XNKZQBBjdaaE03KDYu_e1D1EmMBraogmzVGkyw_HO0iUEZzofpWl3UELYWPUyApTg46kp5Mvcj2Y_VW1No6GLOyQ';
-      // const authEndpoint = 'https://accounts.spotify.com/authorize';
-
-      // // Replace with your app's client ID, redirect URI and desired scopes
-      // const clientId = '3c9e42b86d8c42fda86e26959ec827fe';
-      // const redirectUri = 'https://musician-portfolio.herokuapp.com/callback';
-      // const scopes = [
-      //   'streaming',
-      //   'user-modify-playback-state'
-      // ];
-
-      // // Set up the Web Playback SDK
-
-      // window.onSpotifyPlayerAPIReady = () => {
-      //   const player = new Spotify.Player({
-      //     name: 'Web Playback SDK Template',
-      //     getOAuthToken: cb => { cb(token); }
-      //   });
-
-      //   // Error handling
-      //   player.on('initialization_error', e => console.error(e));
-      //   player.on('authentication_error', e => console.error(e));
-      //   player.on('account_error', e => console.error(e));
-      //   player.on('playback_error', e => console.error(e));
-
-      //   // Playback status updates
-      //   player.on('player_state_changed', state => {
-      //     console.log(state)
-      //     $('#current-track').attr('src', state.track_window.current_track.album.images[0].url);
-      //     $('#current-track-name').text(state.track_window.current_track.name);
-      //   });
-
-      //   // Ready
-      //   player.on('ready', data => {
-      //     console.log('Ready with Device ID', data.device_id);
-
-      //     // Play a track using our new device ID
-      //     play(data.device_id);
-      //   });
-
-      //   // Connect to the player!
-      //   player.connect();
-      // }
-
-      // // Play a specified track on the Web Playback SDK's device ID
-      // function play(device_id) {
-      //   $.ajax({
-      //   url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
-      //   type: "PUT",
-      //   data: '{"uris": ["spotify:track:5ya2gsaIhTkAuWYEMB0nw5"]}',
-      //   beforeSend: function(xhr){xhr.setRequestHeader('Authorization', 'Bearer ' + token );},
-      //   success: function(data) {
-      //     console.log(data)
-      //   }
-      //   });
-      // }
-
       $(document).ready(() => {
-        //$('body').fadeIn(850);
+        const widget = SC.Widget(document.getElementById('player'));
+        let allSongs = [];
+        widget.bind(SC.Widget.Events.READY, () => {
+          widget.getSounds((songs) => {
+            allSongs = songs;
+            console.log(songs);
+            let discographySongsHTML = '',
+                playSongsHTML = '<div class="top-fade"></div>';
 
-        changeSection('music');
-        changeSection('discography');
-        changeSection('play');
+            songs.forEach((song, i) => {
+              discographySongsHTML += `
+                <div data-id="${i}" class="col-5ths">
+                  <div id="discographysong-${i + 1}" class="song disc-song" style="background: url(${song.artwork_url})">
+                    <p class="song-title">${song.title}</p>
+                  </div>
+                </div>
+              `;
+              playSongsHTML += `
+                <li id="playsong-${i + 1}" class="song">
+                  <div class="artwork" style="background: url(${song.artwork_url})"></div>
+                  <span class="title">${song.title}</span>
+                  <span class="time">${msToTime(song.duration)}</span>
+                  <span class="likes">${song.likes_count}</span>
+                  <i class="fas fa-heart heart"></i>
+                </li>
+              `;
+              clickSong(i + 1);
+              clickSong(i + 1);
+            });
 
-        clickSongDiscography('1');
+            playSongsHTML += '<div class="bottom-fade"></div>';
+
+            $('#disc-songs-container').html(discographySongsHTML);
+            $('#play-songs-container').html(playSongsHTML);
+            $('#player-title').text(songs[0].title);
+            $('#artist-name, #player-artist, title').text(songs[0].user.username);
+            $('#duration').text(msToTime(songs[0].duration));
+            $('progress').attr('max',songs[0].duration);
+            $('#player-artwork').css('background',`url(${songs[0].artwork_url})`);
+            $('body').fadeIn(850);
+
+            allSongs.forEach((song, i) => {
+              clickSong(i + 1);
+            })
+          })
+        });
+
+        setClickChangeSection('music');
+        setClickChangeSection('discography');
+        setClickChangeSection('play');
+
+        $('#play-pause').click(() => {
+          widget.toggle();
+          setTime();
+          if($('#play-pause-icon').hasClass('fa-pause')) {
+            $('#play-pause-icon').removeClass('fa-pause').addClass('fa-play');
+          } else {
+            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+          }
+        })
+
+
+        function setClickChangeSection(id) {
+          $(`#open-${id}`).click(() => {
+            changeSection(id);
+          });
+        }
 
         function changeSection(id) {
-          $(`#open-${id}`).click(() => {
-            $('.songs, .circle, #page-title').hide();
-            $('#page-title').html(id);
-            $(`#circle-${id}`).show();
-            $(`#${id}, #page-title`).fadeIn(850);
-          });
+          $('.songs, .circle, #page-title').hide();
+          $('#page-title').html(id);
+          $(`#circle-${id}`).show();
+          $(`#${id}, #page-title`).fadeIn(850);
         }
 
-        function clickSongDiscography(id) {
+        function clickSong(id) {
           $(`div#discographysong-${id}`).click(() => {
-            // TODO pass in ID
-            console.log("HELLO", id);
-            // playSong(id);
+            playSong();
+          });
+          $(`li#playsong-${id}`).click(() => {
+            playSong();
           });
         }
 
-        function playSong(id) {
+        function playSong() {
           changeSection('play');
           // TODO hookup to soundcloud sdk
-
+          widget.play();
+          setTime();
+          $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
         }
 
+        function setTime() {
+          widget.getPosition((time) => {
+            $('progress').attr('value',time);
+            time = msToTime(time);
+            $('#current-duration').text(time);
+          })
+          setTimeout(() => {
+            setTime();
+          }, 1000);
+        }
+
+        function msToTime(duration) {
+          var seconds = parseInt((duration / 1000) % 60),
+              minutes = parseInt((duration / (1000 * 60)) % 60);
+          seconds = (seconds < 10) ? "0" + seconds : seconds;
+          return minutes + ":" + seconds;
+        }
         // TODO fix Portfolio scrollbar so the scrollbar is only within the div and not the body, then hide scrollbar
       });
     </script>
