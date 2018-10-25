@@ -158,7 +158,6 @@
         }
 
         function playSong(id) {
-          // TODO hookup to soundcloud sdk
           widget.skip(id);
           setTime();
           widget.getCurrentSound((song) => {
@@ -169,7 +168,6 @@
         }
 
         function setTime() {
-          //console.log("HELLO");
           widget.getPosition((time) => {
             $('progress').attr('value',time);
             time = msToTime(time);
