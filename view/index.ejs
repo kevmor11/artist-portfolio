@@ -6,7 +6,7 @@
 
     <section id="music" class="songs">
       <script src="https://w.soundcloud.com/player/api.js"></script>
-      <iframe id="player" width="100%" height="1000" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/71811764&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+      <iframe id="player" width="100%" height="500" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/71811764&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
 
       <script>
         $(document).ready(() => {
@@ -14,7 +14,6 @@
           widget.bind(SC.Widget.Events.READY, () => {
             widget.getSounds((songs) => {
               console.log(songs);
-              // TODO fadeIn body as soon as discog page is finished loading, render the rest of the pages in the background
               let discographySongsHTML = '',
                   playSongsHTML = '<div class="top-fade"></div>';
               songs.forEach((song, i) => {
@@ -48,29 +47,24 @@
           function msToTime(duration) {
             var seconds = parseInt((duration / 1000) % 60),
                 minutes = parseInt((duration / (1000 * 60)) % 60);
-
             seconds = (seconds < 10) ? "0" + seconds : seconds;
-
             return minutes + ":" + seconds;
           }
         });
       </script>
-
     </section>
 
     <section id="discography" class="songs">
       <div class="container-fluid">
-        <div id="disc-songs-container" class="row">
-
-        </div>
+        <div id="disc-songs-container" class="row"></div>
       </div>
     </section>
 
     <section id="play" class="songs position-relative">
       <div id="player-artwork" class="artwork d-inline-block"></div>
       <div class="player position-absolute">
-        <div id="player-title" class="song-title">CRUEL (ZOTTI FLIP)</div>
-        <div id="player-artist" class="artist">ZOTTI</div>
+        <div id="player-title" class="song-title"></div>
+        <div id="player-artist" class="artist"></div>
         <div class="controls">
           <i class="fas fa-random shuffle"></i>
           <i class="fas fa-step-backward previous"></i>

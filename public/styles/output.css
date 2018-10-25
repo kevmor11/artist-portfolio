@@ -126,7 +126,8 @@ section#play.songs {
     top: 40px;
     left: 330px; }
     section#play.songs div.player div.song-title, section#play.songs div.player div.artist {
-      font-family: "Roboto", sans-serif; }
+      font-family: "Roboto", sans-serif;
+      text-transform: uppercase; }
     section#play.songs div.player div.song-title {
       font-weight: 400;
       font-size: 30px; }
@@ -238,6 +239,7 @@ section#play.songs {
       section#play.songs ul.song-list li.song span.title {
         min-width: 280px;
         margin-left: 30px;
+        text-transform: uppercase;
         display: inline-block; }
       section#play.songs ul.song-list li.song span.likes {
         margin-left: 100px;
