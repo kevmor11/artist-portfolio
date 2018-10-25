@@ -47,6 +47,9 @@
 
     <script>
       $(document).ready(() => {
+        // TODO allow users to skip through song by clicking on progress bar
+          // show a circle over the progress point when you hover your mouse
+
         const widget = SC.Widget(document.getElementById('player'));
         let allSongs = [];
         widget.bind(SC.Widget.Events.READY, () => {
@@ -166,7 +169,7 @@
           })
           setTimeout(() => {
             setTime();
-          }, 1000);
+          }, 500);
         }
 
         function msToTime(duration) {

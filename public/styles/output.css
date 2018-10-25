@@ -172,11 +172,6 @@ section#play.songs {
       border-radius: 15px;
       box-shadow: 0px 0px 0px white inset; }
     section#play.songs div.player progress::-webkit-progress-value {
-      -webkit-transition: all 1s linear;
-      -moz-transition: all 1s linear;
-      -ms-transition: all 1s linear;
-      -o-transition: all 1s linear;
-      transition: all 1s linear;
       display: inline-block;
       float: left;
       height: 3px;
