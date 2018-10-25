@@ -120,6 +120,7 @@
           widget.getCurrentSound((song) => {
             $('#player-title').text(song.title);
             $('#duration').text(msToTime(song.duration));
+            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
           })
         });
 
@@ -128,6 +129,7 @@
           widget.getCurrentSound((song) => {
             $('#player-title').text(song.title);
             $('#duration').text(msToTime(song.duration));
+            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
           })
         });
 
@@ -142,7 +144,7 @@
           $('.songs, .circle, #page-title').hide();
           $('#page-title').html(id);
           $(`#circle-${id}`).show();
-          $(`#${id}, #page-title`).fadeIn(850);
+          $(`#${id}, #page-title`).fadeIn(950);
         }
 
         function clickSong(id) {
