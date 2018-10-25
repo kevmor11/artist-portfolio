@@ -22,7 +22,7 @@
         <div id="player-artist" class="artist"></div>
         <div class="controls">
           <span id="shuffle">
-            <i class="fas fa-random shuffle"></i>
+            <i id="shuffle-icon" class="fas fa-random shuffle"></i>
           </span>
           <span id="previous">
             <i class="fas fa-step-backward previous"></i>
@@ -34,7 +34,7 @@
             <i class="fas fa-step-forward next"></i>
           </span>
           <span id="repeat">
-            <i class="fas fa-redo repeat"></i>
+            <i id="repeat-icon" class="fas fa-redo repeat"></i>
           </span>
         </div>
         <progress id="progress" name="" max="100" value="0"></progress>
@@ -106,7 +106,23 @@
           } else {
             $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
           }
-        })
+        });
+
+        $('#previous').click(() => {
+          widget.prev().seekTo(0);
+          widget.getCurrentSound((song) => {
+            $('#player-title').text(song.title);
+            $('#duration').text(msToTime(song.duration));
+          })
+        });
+
+        $('#next').click(() => {
+          widget.next().seekTo(0);
+          widget.getCurrentSound((song) => {
+            $('#player-title').text(song.title);
+            $('#duration').text(msToTime(song.duration));
+          })
+        });
 
 
         function setClickChangeSection(id) {
