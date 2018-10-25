@@ -94,11 +94,13 @@
           })
         });
 
-        setClickChangeSection('music');
-        setClickChangeSection('discography');
-        setClickChangeSection('play');
+        setClickForChangeSection('music');
+        setClickForChangeSection('discography');
+        setClickForChangeSection('play');
 
         $('#play-pause').click(() => {
+          // TODO pause setTime from firing when the songs pauses
+            // may need to switch to setInterval instead and then clearInterval to pause it
           widget.toggle();
           setTime();
           if($('#play-pause-icon').hasClass('fa-pause')) {
@@ -125,7 +127,7 @@
         });
 
 
-        function setClickChangeSection(id) {
+        function setClickForChangeSection(id) {
           $(`#open-${id}`).click(() => {
             changeSection(id);
           });
@@ -156,6 +158,7 @@
         }
 
         function setTime() {
+          console.log("HELLO");
           widget.getPosition((time) => {
             $('progress').attr('value',time);
             time = msToTime(time);
