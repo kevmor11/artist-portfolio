@@ -13,37 +13,35 @@
           const widget = SC.Widget(document.getElementById('player'));
           widget.bind(SC.Widget.Events.READY, () => {
             widget.getSounds((songs) => {
-              setTimeout(() => {
-                console.log(songs);
-                // TODO fadeIn body as soon as discog page is finished loading, render the rest of the pages in the background
-                let discographySongsHTML = '',
-                    playSongsHTML = '<div class="top-fade"></div>';
-                songs.forEach((song, i) => {
-                  discographySongsHTML += `
-                    <div id="discographysong-${i + 1}" data-id="${i}" class="col-5ths">
-                      <div class="song disc-song" style="background: url(${song.artwork_url})">
-                        <p class="song-title">${song.title}</p>
-                      </div>
+              console.log(songs);
+              // TODO fadeIn body as soon as discog page is finished loading, render the rest of the pages in the background
+              let discographySongsHTML = '',
+                  playSongsHTML = '<div class="top-fade"></div>';
+              songs.forEach((song, i) => {
+                discographySongsHTML += `
+                  <div id="discographysong-${i + 1}" data-id="${i}" class="col-5ths">
+                    <div class="song disc-song" style="background: url(${song.artwork_url})">
+                      <p class="song-title">${song.title}</p>
                     </div>
-                  `;
-                  playSongsHTML += `
-                    <li id="playsong-${i + 1}" class="song">
-                      <div class="artwork" style="background: url(${song.artwork_url})"></div>
-                      <span class="title">${song.title}</span>
-                      <span class="time">${msToTime(song.duration)}</span>
-                      <span class="likes">${song.likes_count}</span>
-                      <i class="fas fa-heart heart"></i>
-                    </li>
-                  `;
-                });
-                playSongsHTML += '<div class="bottom-fade"></div>';
-                $('#disc-songs-container').html(discographySongsHTML);
-                $('#play-songs-container').html(playSongsHTML);
-                $('#player-title').text(songs[0].title);
-                $('#artist-name, #player-artist, title').text(songs[0].user.username);
-                $('#player-artwork').css('background',`url(${songs[0].artwork_url})`);
-                $('body').fadeIn(850);
-              }, 5000);
+                  </div>
+                `;
+                playSongsHTML += `
+                  <li id="playsong-${i + 1}" class="song">
+                    <div class="artwork" style="background: url(${song.artwork_url})"></div>
+                    <span class="title">${song.title}</span>
+                    <span class="time">${msToTime(song.duration)}</span>
+                    <span class="likes">${song.likes_count}</span>
+                    <i class="fas fa-heart heart"></i>
+                  </li>
+                `;
+              });
+              playSongsHTML += '<div class="bottom-fade"></div>';
+              $('#disc-songs-container').html(discographySongsHTML);
+              $('#play-songs-container').html(playSongsHTML);
+              $('#player-title').text(songs[0].title);
+              $('#artist-name, #player-artist, title').text(songs[0].user.username);
+              $('#player-artwork').css('background',`url(${songs[0].artwork_url})`);
+              $('body').fadeIn(850);
             })
           });
 
