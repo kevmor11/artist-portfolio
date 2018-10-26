@@ -172,21 +172,27 @@
         function prevSong() {
           widget.prev().seekTo(0);
           widget.getCurrentSound((song) => {
-            $('#player-title').text(song.title);
-            $('#duration').text(msToTime(song.duration));
-            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
-            $('#player-artwork').css('background',`url(${song.artwork_url})`);
-          })
+            $('#player-title').fadeOut(() => {
+              $('#player-title').text(song.title);
+              $('#duration').text(msToTime(song.duration));
+              $('#player-title').fadeIn();
+              $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+              $('#player-artwork').css('background',`url(${song.artwork_url})`);
+            });
+          });
         }
 
         function nextSong() {
           widget.next().seekTo(0);
           widget.getCurrentSound((song) => {
-            $('#player-title').text(song.title);
-            $('#duration').text(msToTime(song.duration));
-            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
-            $('#player-artwork').css('background',`url(${song.artwork_url})`);
-          })
+            $('#player-title').fadeOut(() => {
+              $('#player-title').text(song.title);
+              $('#duration').text(msToTime(song.duration));
+              $('#player-title').fadeIn();
+              $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+              $('#player-artwork').css('background',`url(${song.artwork_url})`);
+            });
+          });
         }
 
         function playSong(id) {
