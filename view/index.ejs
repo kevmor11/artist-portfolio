@@ -56,10 +56,8 @@
           // or the shadow grows in the size with an animation - could also look cool
 
         const widget = SC.Widget(document.getElementById('player'));
-        let allSongs = [];
         widget.bind(SC.Widget.Events.READY, () => {
           widget.getSounds((songs) => {
-            allSongs = songs;
             console.log(songs);
             let discographySongsHTML = '',
                 playSongsHTML = '<div class="top-fade"></div>';
@@ -97,7 +95,7 @@
             $('#player-artwork').css('background',`url(${songs[0].artwork_url})`);
             $('body').fadeIn(850);
 
-            allSongs.forEach((song, i) => {
+            songs.forEach((song, i) => {
               clickSong(i);
             })
           })
