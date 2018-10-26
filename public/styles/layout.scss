@@ -117,6 +117,24 @@ section.songs {
 section#discography.songs {
   display: block;
 
+  div.bottom-scroll-fade {
+    position: fixed;
+    width: 100%;
+    height: 10px;
+    bottom: 60px;
+    background: #fc323200; /* Old browsers */
+    background: -moz-linear-gradient(top, #fc323200 0%, white 100%);
+    background: -webkit-linear-gradient(top, #fc323200 0%,white 100%);
+    background: linear-gradient(to bottom, #fc323200 0%,white 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc323200', endColorstr='white',GradientType=0 );
+  }
+  div.bottom-scroll-solid {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
+    background-color: white;
+  }
   div.disc-song {
     cursor: pointer;
     width: 100px;
@@ -240,8 +258,9 @@ section#play.songs {
     overflow: scroll;
     width: 100%;
     // height: 300px;
-    height: 45.6vh;
-    padding-top: 20px;
+    height: 39.6vh;
+    // padding-top: 20px;
+    padding-top: 2.6vh;
 
     div.top-fade {
       position: fixed;
@@ -259,7 +278,7 @@ section#play.songs {
       width: 100%;
       height: 10px;
       // top: 712px;
-      top: 89.1vh;
+      top: 93.65vh;
       background: #fc323200; /* Old browsers */
       background: -moz-linear-gradient(top, #fc323200 0%, white 100%);
       background: -webkit-linear-gradient(top, #fc323200 0%,white 100%);
@@ -331,24 +350,6 @@ footer {
     z-index: 50;
     text-transform: uppercase;
     font-family: $textRoboto;
-  }
-  div.bottom-scroll-fade {
-    position: fixed;
-    width: 100%;
-    height: 10px;
-    bottom: 60px;
-    background: #fc323200; /* Old browsers */
-    background: -moz-linear-gradient(top, #fc323200 0%, white 100%);
-    background: -webkit-linear-gradient(top, #fc323200 0%,white 100%);
-    background: linear-gradient(to bottom, #fc323200 0%,white 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc323200', endColorstr='white',GradientType=0 );
-  }
-  div.bottom-scroll-solid {
-    position: fixed;
-    width: 100%;
-    height: 60px;
-    bottom: 0;
-    background-color: white;
   }
   div.footer {
     position: fixed;
