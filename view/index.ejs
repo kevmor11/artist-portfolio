@@ -71,10 +71,10 @@
                 </div>
               `;
               playSongsHTML += `
-                <li class="song">
-                  <div class="artwork playsong-${i}" style="background: url(${song.artwork_url})"></div>
+                <li id="playsong-${i}" class="song">
+                  <div class="artwork" style="background: url(${song.artwork_url})"></div>
                   <span class="title-container">
-                    <span class="title playsong-${i}">${song.title}</span>
+                    <span class="title">${song.title}</span>
                   </span>
                   <span class="time">${msToTime(song.duration)}</span>
                   <span class="likes">${song.likes_count}</span>
@@ -134,7 +134,6 @@
           nextSong();
         });
 
-
         function setClickForChangeSection(id) {
           $(`#open-${id}`).click(() => {
             changeSection(id);
@@ -153,7 +152,7 @@
             playSong(id);
             changeSection('play');
           });
-          $(`.playsong-${id}`).click(() => {
+          $(`li#playsong-${id}`).click(() => {
             playSong(id);
           });
         }
@@ -189,12 +188,15 @@
         }
 
         function playSong(id) {
-          widget.skip(id);
+          widget.skip(id).seekTo(0);
           setTime();
           widget.getCurrentSound((song) => {
-            $('#player-title').text(song.title);
-            $('#duration').text(msToTime(song.duration));
-            $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+            $('#player-title').fadeOut(() => {
+              $('#player-title').text(song.title);
+              $('#player-title').fadeIn();
+              $('#duration').text(msToTime(song.duration));
+              $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
+            });
           })
         }
 
@@ -215,6 +217,14 @@
           seconds = (seconds < 10) ? "0" + seconds : seconds;
           return minutes + ":" + seconds;
         }
+
+        window.addEventListener('keydown', (e) => {
+          if(e.keyCode == 32 && e.target == document.body) {
+            // prevent spacebar from scrolling page since spacebar is controlling play/pause button
+            e.preventDefault();
+          }
+        });
+
         // TODO fix Portfolio scrollbar so the scrollbar is only within the div and not the body, then hide scrollbar
       });
     </script>
