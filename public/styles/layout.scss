@@ -146,11 +146,12 @@ section#discography.songs {
 
 section#play.songs {
   padding-bottom: 0;
-  div.artwork {
+  div#player-artwork {
     border-radius: 14px;
     background-color: black;
     width: 250px;
     height: 250px;
+    background-size: cover !important;
     @include shadow;
   }
   div.player {
@@ -239,7 +240,7 @@ section#play.songs {
     overflow: scroll;
     width: 100%;
     // height: 300px;
-    height: 45.2vh;
+    height: 45.6vh;
     padding-top: 20px;
 
     div.top-fade {
@@ -258,7 +259,7 @@ section#play.songs {
       width: 100%;
       height: 10px;
       // top: 712px;
-      top: 88.65vh;
+      top: 89.1vh;
       background: #fc323200; /* Old browsers */
       background: -moz-linear-gradient(top, #fc323200 0%, white 100%);
       background: -webkit-linear-gradient(top, #fc323200 0%,white 100%);
