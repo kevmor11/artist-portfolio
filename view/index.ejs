@@ -111,13 +111,13 @@
           // unless I put a player at the bottom of the screen
         $('body').keyup((e) => {
           if(e.keyCode == 32) {
-            // user has pressed spacebar
+            // user pressed spacebar
             togglePlayPause();
           } else if(e.keyCode == 37) {
-            // user has pressed left arrow
+            // user pressed left arrow
             prevSong();
           } else if(e.keyCode == 39) {
-            // user has pressed right arrow
+            // user pressed right arrow
             nextSong();
           }
         });
@@ -158,13 +158,14 @@
         }
 
         function togglePlayPause() {
-          widget.toggle();
-          // TODO pause setTime from firing when the songs pauses
-            // may need to switch to setInterval instead and then clearInterval to pause it
-          setTime();
           if($('#play-pause-icon').hasClass('fa-pause')) {
+            widget.pause();
+            // TODO pause setTime from firing when the songs pauses
+              // may need to switch to setInterval instead and then clearInterval to pause it
             $('#play-pause-icon').removeClass('fa-pause').addClass('fa-play');
           } else {
+            setTime();
+            widget.play();
             $('#play-pause-icon').removeClass('fa-play').addClass('fa-pause');
           }
         }
@@ -215,7 +216,7 @@
             time = msToTime(time);
             $('#current-duration').text(time);
           })
-          setTimeout(() => {
+          window.setTimeout(() => {
             setTime();
           }, 500);
         }
